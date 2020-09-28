@@ -92,13 +92,18 @@ const getResultOfOperation = (firstNumber, secondNumber, operation) => {
 }
 
 /**
- * Get epsilon
+ * Get epsilon, If the operation is multiplication,
+ * raise the order of epsilon by 1 (from 10 ^ -16 to 10 ^ -15)
  * @param firstNumber
  * @param secondNumber
+ * @param operation
  * @returns {number}
  */
-const getEpsilon = (firstNumber, secondNumber) => {
-  return (Math.abs(firstNumber) + Math.abs(secondNumber)) * Number.EPSILON
+const getEpsilon = (firstNumber, secondNumber, operation) => {
+  if (['+', '-', '/'].includes(operation)) {
+    return (Math.abs(firstNumber) + Math.abs(secondNumber)) * Number.EPSILON
+  }
+  return (Math.abs(firstNumber) + Math.abs(secondNumber)) * 10 * Number.EPSILON
 }
 
 /**
@@ -123,7 +128,7 @@ const calc = (firstNumber, secondNumber, operation, result) => {
     return Error('Out of input range')
   }
 
-  const epsilon = getEpsilon(firstParsedNumber, secondPursedNumber)
+  const epsilon = getEpsilon(firstParsedNumber, secondPursedNumber, trimmedOperation)
   const localResult = getResultOfOperation(firstParsedNumber, secondPursedNumber, trimmedOperation)
 
   return floatCompare(localResult, resultParsedNumber, epsilon)
