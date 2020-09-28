@@ -207,7 +207,31 @@ describe('Calc:', () => {
 
       expect(calc(frstNumber, scndNumber, operation, resultNumber)).toBe(true)
     })
-    test('10^5 + 10^5 != 2*10^5 + 0.1 / (false)', () => {
+    test('44.66 / 5 === 8.932', () => {
+      const frstNumber = '44.66'
+      const scndNumber = '5'
+      const operation = '/'
+      const resultNumber = '8.932'
+
+      expect(calc(frstNumber, scndNumber, operation, resultNumber)).toBe(true)
+    })
+    test('51.45 / 5 === 10.29', () => {
+      const frstNumber = '51.45'
+      const scndNumber = '5'
+      const operation = '/'
+      const resultNumber = '10.29'
+
+      expect(calc(frstNumber, scndNumber, operation, resultNumber)).toBe(true)
+    })
+    test('2.06 / 5 === 0.412', () => {
+      const frstNumber = '2.06'
+      const scndNumber = '5'
+      const operation = '/'
+      const resultNumber = '0.412'
+
+      expect(calc(frstNumber, scndNumber, operation, resultNumber)).toBe(true)
+    })
+    test('10^5 + 10^5 != 2*10^5 + 0.1  (false)', () => {
       const frstNumber = 100000
       const scndNumber = 100000
       const operation = '+'
@@ -216,7 +240,7 @@ describe('Calc:', () => {
       expect(calc(frstNumber, scndNumber, operation, resultNumber)).toBe(false)
     })
   })
-  describe('Some tests', () => {
+  describe('Some more simple tests', () => {
     test('test 1 +', () => {
       const frstNumber = 10
       const scndNumber = 10
