@@ -63,25 +63,21 @@ const isValidValue = (value) => (MIN <= value && value <= MAX)
  * Compares the result of an operation with
  * an expectation by comparing the difference with epsilon
  * for multiplication and division magic from https://floating-point-gui.de/errors/comparison/
- * @param localResult
- * @param result
- * @param epsilon
- * @param operation
+ * @param {number} localResult
+ * @param {number} result
+ * @param {number} epsilon
  * @returns {boolean}
  */
-const floatCompare = (localResult, result, epsilon, operation) => {
+const floatCompare = (localResult, result, epsilon) => {
   const diff = Math.abs(localResult - result)
-  if (operation === '+' || operation === '-') {
     return diff <= epsilon
-  }
-  return (diff / (localResult + result)) < epsilon
 }
 
 /**
  * Returns the result of the operation by template
- * @param firstNumber
- * @param secondNumber
- * @param operation
+ * @param {number} firstNumber
+ * @param {number} secondNumber
+ * @param {string} operation
  * @returns {*}
  */
 const getResultOfOperation = (firstNumber, secondNumber, operation) => {
@@ -97,12 +93,16 @@ const getResultOfOperation = (firstNumber, secondNumber, operation) => {
 
 /**
  * Get epsilon
- * @param firstNumber
- * @param secondNumber
+ * @param {number} firstNumber
+ * @param {number} secondNumber
+ * @param {string} operation
  * @returns {number}
  */
-const getEpsilon = (firstNumber, secondNumber) => {
+const getEpsilon = (firstNumber, secondNumber, operation) => {
+  if (['+', '-'].includes(operation)) {
     return (Math.abs(firstNumber) + Math.abs(secondNumber)) * Number.EPSILON
+  }
+  return (Math.abs(firstNumber) * Math.abs(secondNumber)) * Number.EPSILON
 }
 
 /**
@@ -127,7 +127,7 @@ const calc = (firstNumber, secondNumber, operation, result) => {
     return Error('Out of input range')
   }
 
-  const epsilon = getEpsilon(firstParsedNumber, secondPursedNumber)
+  const epsilon = getEpsilon(firstParsedNumber, secondPursedNumber, trimmedOperation)
   const localResult = getResultOfOperation(firstParsedNumber, secondPursedNumber, trimmedOperation)
 
   return floatCompare(localResult, resultParsedNumber, epsilon, trimmedOperation)
