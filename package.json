@@ -1,7 +1,7 @@
 {
   "name": "calculate_task",
   "version": "1.0.0",
-  "description": "'Task with callback'",
+  "description": "'Task with broken IEEE 754'",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix",
@@ -10,21 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VaskoDeGama/cb_task.git"
+    "url": "git+https://github.com/VaskoDeGama/calc_task.git"
   },
   "keywords": [
-    "no",
     "promise",
-    "callback",
     "functions",
-    "array"
+    "array",
+    "IEEE754"
   ],
   "author": "Vasiliy Kamenyuk <karmenyuk@yandex.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VaskoDeGama/cb_task/issues"
+    "url": "https://github.com/VaskoDeGama/calc_task/issues"
   },
-  "homepage": "https://github.com/VaskoDeGama/cb_task#readme",
+  "homepage": "https://github.com/VaskoDeGama/calc_task#readme",
   "devDependencies": {
     "eslint": "latest",
     "eslint-friendly-formatter": "latest",
